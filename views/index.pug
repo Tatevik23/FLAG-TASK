@@ -1,0 +1,38 @@
+doctype html
+html
+    head
+        meta(name='viewport', content ='width=device-width, initial-scale=1')
+        link(rel='stylesheet', href='/styles/main.css')
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css")
+        body(id = "body" class = "body")
+            .header
+                h1 Where in the world?
+                p
+                    i.fas.fa-moon
+                    span#mode Dark Mode
+            .section
+                .search
+                    input(type="text", id="search", placeholder="Search for a country...")
+                    form
+                        select(id="region")
+                            option(value="", selected) Filter by Regions
+                            each variable in regions
+                                option(value=variable) #{variable}
+                div#container
+                    each all in alls
+                        .card
+                            a(href=`/country/${all.name.official}`)
+                                - const myAttributes = {"src" : all.flags.png, "alt": ""}
+                                img&attributes(myAttributes)
+                                .inner-div
+                                    h3= all.name.official
+                                    h4
+                                        | Population :
+                                        span= ' ' + all.population.toLocaleString("en-US")
+                                    h4
+                                        | Region :
+                                        span= ' ' + all.region
+                                    h4
+                                        | Capital :
+                                        span= ' ' + all.capital
+        script(src='/script.js')

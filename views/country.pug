@@ -1,0 +1,55 @@
+html
+    head
+        meta(name='viewport', content ='width=device-width, initial-scale=1')
+        link(rel='stylesheet', href='/styles/country.css')
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css")
+    body(id = "body" class = "body")
+        .header
+            h1 Where in the world?
+            p
+                i.fas.fa-moon
+                span#mode Dark Mode
+        .section
+            a(href=`/`)
+                button(onclick='')
+                    i.fa.fa-arrow-left
+                    | Back
+            .container
+                img(src= country.flags.png alt='')
+                .countryInfo
+                    h1.h1= country.name.official
+                    .inner-div1
+                        .first-column
+                            h3
+                                | Native Name:
+                                span= ' ' + nativeName
+                            h3
+                                | Population:
+                                span= ' ' + country.population.toLocaleString("en-US")
+                            h3
+                                | Region:
+                                span= ' ' + country.region
+                            h3
+                                | Sub Region:
+                                span= ' ' + country.subregion
+                            h3
+                                | Capital:
+                                span= ' ' + country.capital
+                        .second-column
+                            h3
+                                | Top Level Domain:
+                                span= ' ' + country.tld
+                            h3
+                                | Currencies:
+                                span= ' ' + currency
+                            h3
+                                | Languages:
+                                each language in country.languages
+                                    span= ' ' + language
+                    .inner-div2
+                        h3 Border countries:
+                        .borders
+                            each border in borders
+                                a(href=`/country/${border}`)
+                                    p= border
+        script(src='/script.js')
